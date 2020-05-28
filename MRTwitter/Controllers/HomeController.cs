@@ -11,7 +11,6 @@ namespace MRTwitter.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var asd = System.Configuration.ConfigurationManager.AppSettings["emailAddress"];
             return View();
         }
     }
