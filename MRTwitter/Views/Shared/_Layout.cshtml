@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>First Twitter Application</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <link rel="icon" href="~/Content/images/favico.ico">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="javascript/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+
+<body role="document">
+    <header role="banner" id="site-header">
+        <div class="content-wrap">
+            <h1><a href="./" id="header-logo"><img src="~/Content/images/logo.png" alt="Header"></a></h1>
+        </div>
+    </header>
+
+    <div id="main" class="clearfix">
+        <div class="title-bar">
+            <h2 class="content-wrap">Welcome to the Twitter Page</h2>
+        </div>
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/html5shiv")
+    @Scripts.Render("~/bundles/unobtrusive")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
