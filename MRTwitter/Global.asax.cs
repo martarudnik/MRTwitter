@@ -1,4 +1,5 @@
 ﻿using MRTwitter.App_Start;
+using MRTwitter.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace MRTwitter
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            DependencyResolver.SetResolver(new NinjectDependencyResolver());
         }
     }
 }
