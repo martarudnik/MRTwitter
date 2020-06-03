@@ -17,7 +17,7 @@ namespace MRTwitter.ViewModel
         }
         public string TextShortVersion
         {
-            get { return TextHelper.PrepareShortText(this.TextShortVersion); }
+            get { return TextHelper.PrepareShortText(this.Text); }
         }
     }
 }

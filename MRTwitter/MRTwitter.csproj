@@ -127,6 +127,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Constants\TwitterEndpointUrlConstants.cs" />
     <Compile Include="Constants\TwitterParameterKey.cs" />
+    <Compile Include="Contracts\SearchContract.cs" />
     <Compile Include="Contracts\TweetContract.cs" />
     <Compile Include="Contracts\UserContract.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -146,6 +147,8 @@
     <Compile Include="Services\DomainService.cs" />
     <Compile Include="Services\TwitterService.cs" />
     <Compile Include="ViewModel\ErrorViewModel.cs" />
+    <Compile Include="ViewModel\SearchResultsViewModel.cs" />
+    <Compile Include="ViewModel\SearchViewModel.cs" />
     <Compile Include="ViewModel\TweetViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
@@ -160,6 +163,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\UserTweets.cshtml" />
+    <Content Include="Views\Home\_Results.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

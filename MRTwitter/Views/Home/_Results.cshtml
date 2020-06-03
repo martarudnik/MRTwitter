@@ -1,0 +1,44 @@
+﻿
+@model MRTwitter.ViewModel.SearchResultsViewModel
+
+@if (Model != null && Model?.Tweets != null && Model?.Tweets.Count > 0)
+{
+    <div class="results-container">
+        <h3>Search results:</h3>
+        <div class="twitter-feed">
+            @foreach (var tweet in Model.Tweets)
+            {
+                <div class="tweet">
+                    <p>@Html.Raw(tweet.TextShortVersion) </p>
+                    <p class="tweet-datetime">Posted by @tweet.User.Name on @tweet.CreatedAtString</p>
+                </div>
+            }
+        </div>
+    </div>
+    @*<div class="pagination">
+        @if (Model.PageNumber > 1)
+        {
+            @Ajax.RouteLink("previous page", null, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultList" }, new { @class = "previous", href = $"{Url.Action("Previous", "Home", new { @phrase = Model.Phrase })}" })
+        }
+        @if (Model.PageNumber < 10)
+        {
+            @Ajax.RouteLink("next page", null, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultList" }, new { @class = "next", href = $"{Url.Action("Next", "Home", new { @phrase = Model.Phrase })}" })
+        }
+    </div>*@
+}
+else
+{
+    <div class="results-container">
+        <h3>Sorry, but your search did not return any result</h3>
+    </div>
+}
+
+@*@if (Model != null && Model?.Errors != null && Model?.Errors.Count > 0)
+{
+    <div class="results-container">
+        @foreach (var error in Model.Errors)
+        {
+            <h4 style="color:crimson">@error</h4>
+        }
+    </div>
+}*@

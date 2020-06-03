@@ -20,7 +20,7 @@ namespace MRTwitter.Helpers
             {
                 return string.Format(
                                      "{0}{1} {2} at {3}",
-                                     dateValue.ToString("dd"),
+                                    dateValue.Day.Strip0s(),
                                      dateValue.Day.ToOrdinal(),
                                      dateValue.ToString("MMM yyyy", new CultureInfo("en-US")),
                                      dateValue.ToString("h:mm tt"));
@@ -66,6 +66,11 @@ namespace MRTwitter.Helpers
             }
 
             return extension;
+        }
+        public static string Strip0s(this int value)
+        {
+            var s = value.ToString();
+            return string.Join<int>(".", from x in s.Split('.') select int.Parse(x));
         }
 
         public static string ComputeStrings(string a, string expression, string b)

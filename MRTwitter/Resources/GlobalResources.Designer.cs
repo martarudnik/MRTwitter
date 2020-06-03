@@ -61,11 +61,29 @@ namespace MRTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter some text to search on:.
+        /// </summary>
+        public static string EnterText {
+            get {
+                return ResourceManager.GetString("EnterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My Tweets.
         /// </summary>
         public static string MyTweets {
             get {
                 return ResourceManager.GetString("MyTweets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
             }
         }
         

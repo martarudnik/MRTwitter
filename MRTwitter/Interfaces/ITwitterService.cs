@@ -6,5 +6,6 @@ namespace MRTwitter.Interfaces
     public interface ITwitterService
     {
         List<TweetViewModel> GetTweet();
+        SearchResultsViewModel Search(string phrase);
     }
 }

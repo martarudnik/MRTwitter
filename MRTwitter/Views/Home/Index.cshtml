@@ -3,14 +3,10 @@
 }
 
 <div class="content-wrap">
-    <section role="main" id="content">
-        <div class="tweet-search-results">
+    <div class="content-wrap">
+        <section role="main" id="content">
             @Html.Partial("~/Views/Home/_Search.cshtml")
-            <div class="pagination">
-                <a class="previous" href="#" title="previous page"><span class="reader">Previous page of results</span></a>
-                <a class="next" href="#" title="next page"><span class="reader">Next page of results</span></a>
-            </div>
-        </div>
-    </section>
-    @{Html.RenderAction("GetTweetByUserId");}
+        </section>
+        @{Html.RenderAction("GetTweetByUserId");}
+    </div>
 </div>

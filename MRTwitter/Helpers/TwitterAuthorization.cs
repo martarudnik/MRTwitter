@@ -21,12 +21,15 @@ namespace MRTwitter.Helpers
             get { return CreateQueryString(); }
         }
 
-    public TwitterAuthorization(string fullUrl, Dictionary<string, string> parameters)
+        public TwitterAuthorization(string fullUrl, Dictionary<string, string> parameters)
         {
             this.Parameters = CreateParameterDictionary(fullUrl, parameters);
         }
+        public TwitterAuthorization()
+        {
+        }
 
-        public static string CreateSignature(string url, Dictionary<string, string> data)
+        public string CreateSignature(string url, Dictionary<string, string> data)
         {
             var sigString = string.Join(
                 "&",
@@ -43,7 +46,7 @@ namespace MRTwitter.Helpers
             return Uri.EscapeDataString(GetSha1Hash(signingKey, signatureBase));
         }
 
-        public static string GetSha1Hash(string key, string signatureBase)
+        public string GetSha1Hash(string key, string signatureBase)
         {
             ASCIIEncoding encoding = new ASCIIEncoding();
             string sha1Result;
@@ -73,7 +76,7 @@ namespace MRTwitter.Helpers
                 .Where(kvp => !kvp.Key.StartsWith("oauth_"))
                 .Select(kvp => string.Format("{0}={1}", kvp.Key, HttpUtility.UrlEncode(kvp.Value))));
         }
-        public static Dictionary<string, string> CreateParameterDictionary(string fullUrl, Dictionary<string, string> data)
+        public Dictionary<string, string> CreateParameterDictionary(string fullUrl, Dictionary<string, string> data)
         {
             var timestamp = (int)((DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds);
 

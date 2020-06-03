@@ -1,23 +1,13 @@
 ﻿@using MRTwitter.Resources;
-@using System
 
 <div class="tweet-search">
     <h3>Search for updates:</h3>
-    <form id="search-form">
-        <input type="text" id="search-text" placeholder="@GlobalResources.SearchPhrase" />
-        <input type="submit" id="search-button" value="Search" />
-    </form>
+    @using (Ajax.BeginForm("Search", "Home", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultList" }, new { id = "search-form" }))
+    {
+        <label id="search-text-label" for="search-text" class="reader">@GlobalResources.EnterText</label>
+        <input type="text" required id="search-text" name="phrase" placeholder="@GlobalResources.SearchPhrase" maxlength="25" />
+        <input type="submit" id="search-button" value="@GlobalResources.Search" />
+    }
 </div>
-<div class="results-container">
-    <h3>Search results:</h3>
-    <div class="twitter-feed">
-        <div class="tweet">
-            <p>This is an example Tweet that will be up to 140 characters long. </p>
-            <p class="tweet-datetime">Posted by USERNAME on 3rd May 2010 at 11.30am</p>
-        </div>
-        <div class="tweet">
-            <p>This is the text of another Tweet. Note that any hyperlinks in the Tweet should be <a href="https://www.link.com/" target="_blank">formatted properly</a>.</p>
-            <p class="tweet-datetime">Posted by USERNAME on 3rd May 2010 at 10.20am</p>
-        </div>
-    </div>
+<div class="tweet-search-results" id="resultList">
 </div>

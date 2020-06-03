@@ -44,11 +44,49 @@ namespace MRTwitter.Services
 
             var mapper = config.CreateMapper();
 
-            var dto = mapper.Map<List<TweetContract>, List<TweetViewModel>>(deserializedData);
-            return dto;
+            var tweetViewModel = mapper.Map<List<TweetContract>, List<TweetViewModel>>(deserializedData);
+            return tweetViewModel;
         }
 
-        public string SendToRequestToTwitter(string fullUrl, string oAuthHeader, string query)
+        public SearchResultsViewModel Search(string phrase)
+        {
+            var data = new Dictionary<string, string>
+            {
+                { TwitterParameterKey.Query, phrase },
+                { TwitterParameterKey.Count, "10" }
+            };
+
+            var twitterAutorization = new TwitterAuthorization(TwitterEndpointUrlConstants.GetSearchTweets, data);
+
+            var repsonse = SendToRequestToTwitter(TwitterEndpointUrlConstants.GetSearchTweets, twitterAutorization.OAuthHeader, twitterAutorization.Query);
+
+            var model = new SearchViewModel();
+
+            if (repsonse == null)
+            {
+               //errors
+            }
+
+            var deserializedData = JsonConvert.DeserializeObject<SearchContract>(repsonse);
+            if (deserializedData == null)
+            {
+               //errors
+            }
+
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<SearchContract, SearchResultsViewModel>();
+                cfg.CreateMap<TweetContract, TweetViewModel>();
+                cfg.CreateMap<UserContract, UserViewModel>();
+            });
+
+            var mapper = config.CreateMapper();
+
+            var searchResultsViewModel = mapper.Map<SearchContract, SearchResultsViewModel>(deserializedData);
+            return searchResultsViewModel;
+        }
+
+        private string SendToRequestToTwitter(string fullUrl, string oAuthHeader, string query)
         {
             try
             {
@@ -59,7 +97,7 @@ namespace MRTwitter.Services
                         Query = query.ToString()
                     };
 
-                    httpClient.DefaultRequestHeaders.Add("Authorization", oAuthHeader); ;
+                    httpClient.DefaultRequestHeaders.Add("Authorization", oAuthHeader);
 
                     var httpResponse = httpClient.GetAsync(uriBuilder.ToString()).Result;
                     var response = httpResponse.Content.ReadAsStringAsync().Result;
