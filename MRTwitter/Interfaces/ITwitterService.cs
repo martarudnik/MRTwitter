@@ -1,7 +1,10 @@
-﻿namespace MRTwitter.Interfaces
+﻿using MRTwitter.ViewModel;
+using System.Collections.Generic;
+
+namespace MRTwitter.Interfaces
 {
     public interface ITwitterService
     {
-        void GetTweet();
+        List<TweetViewModel> GetTweet();
     }
 }

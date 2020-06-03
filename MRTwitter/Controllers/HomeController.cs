@@ -3,7 +3,8 @@ using System.Web.Mvc;
 
 namespace MRTwitter.Controllers
 {
-    public class HomeController : Controller{
+    public class HomeController : Controller
+    {
         private readonly ITwitterService _twitterService;
     
         public HomeController(ITwitterService twitterService)
@@ -15,6 +16,12 @@ namespace MRTwitter.Controllers
         {
             _twitterService.GetTweet();
             return View();
+        }
+        public ActionResult GetTweetByUserId()
+        {
+            var model = _twitterService.GetTweet();
+
+            return PartialView("~/Views/Home/UserTweets.cshtml", model);
         }
     }
 }
