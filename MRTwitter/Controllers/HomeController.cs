@@ -25,17 +25,7 @@ namespace MRTwitter.Controllers
 
         public ActionResult Search(string phrase)
         {
-            //if (searchViewModel.Errors.Count > 0)
-            //{
-            //    return PartialView("~/Views/Home/_Results.cshtml", searchViewModel);
-            //}
-
             var searchViewModel = _twitterService.Search(phrase);
-
-            //var tweetIds = searchViewModel.Tweets.Select(x => x.Id);
-
-
-
             return PartialView("~/Views/Home/_Results.cshtml", searchViewModel);
         }
     }

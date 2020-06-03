@@ -3,6 +3,7 @@ using MRTwitter.Constants;
 using MRTwitter.Contracts;
 using MRTwitter.Helpers;
 using MRTwitter.Interfaces;
+using MRTwitter.Utilities;
 using MRTwitter.ViewModel;
 using Newtonsoft.Json;
 using System;
@@ -27,14 +28,14 @@ namespace MRTwitter.Services
             var response = SendToRequestToTwitter(TwitterEndpointUrlConstants.GetStatutes, twitterAutorization.OAuthHeader, twitterAutorization.Query);
             if (response == null) return null;
             {
-                //errors
+                Log.Warn("[TwitterService][GetTweet] - SendToRequestToTwitter response is null");
             }
 
             var deserializedData = (List<TweetContract>)JsonConvert.DeserializeObject(response, typeof(List<TweetContract>));
 
             if (deserializedData == null)
             {
-                //errors
+                Log.Warn("[TwitterService][GetTweet] - Deserialize object is null");
             }
             var config = new MapperConfiguration(cfg =>
             {
@@ -64,13 +65,13 @@ namespace MRTwitter.Services
 
             if (repsonse == null)
             {
-               //errors
+                Log.Warn("[TwitterService][Search] - SendToRequestToTwitter response is null");
             }
 
             var deserializedData = JsonConvert.DeserializeObject<SearchContract>(repsonse);
             if (deserializedData == null)
             {
-               //errors
+                Log.Warn("[TwitterService][Search] - deserialize object is null");
             }
 
             var config = new MapperConfiguration(cfg =>
@@ -100,6 +101,12 @@ namespace MRTwitter.Services
                     httpClient.DefaultRequestHeaders.Add("Authorization", oAuthHeader);
 
                     var httpResponse = httpClient.GetAsync(uriBuilder.ToString()).Result;
+
+                    if (httpResponse == null)
+                    {
+                        Log.Warn("[TwitterService][Search] - httpResponse is null");
+                    }
+
                     var response = httpResponse.Content.ReadAsStringAsync().Result;
 
                     return response;
@@ -107,6 +114,7 @@ namespace MRTwitter.Services
             }
             catch
             {
+                Log.Error("[TwitterService][SendToRequestToTwitter]- problem with ");
                 return null;
             }
         }
