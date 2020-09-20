@@ -2,7 +2,7 @@
 
 namespace MRTwitter.ViewModel
 {
-    public class SearchResultsViewModel : ValidationViewModel
+    public class SearchResultsViewModel : BaseViewModel
     {
         public List<TweetViewModel> Tweets { get; set; }
     }

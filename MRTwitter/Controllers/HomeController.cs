@@ -20,7 +20,7 @@ namespace MRTwitter.Controllers
         }
         public ActionResult GetTweetByUserId()
         {
-            var model = _twitterService.GetTweet();
+            var model = _twitterService.GetTweets();
 
             return PartialView("~/Views/Home/UserTweets.cshtml", model);
         }

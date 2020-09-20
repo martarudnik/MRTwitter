@@ -1,25 +1,32 @@
-﻿@model List<MRTwitter.ViewModel.TweetViewModel>
+﻿@model MRTwitter.ViewModel.UserTweetsViewModel
 
 <aside role="complementary" id="sidebar">
     <h3 class="tweet-heading">@GlobalResources.MyTweets</h3>
-    @*@if (Model != null && Model?.Tweets != null && Model?.Tweets.Count > 0)
-        {*@
-    <p class="tweet-intro">Our most recent updates:</p>
-    <div class="twitter-feed">
-        @foreach (var tweet in Model)
-        {
-            <div class="tweet">
-                <p>@Html.Raw(tweet.TextShortVersion)</p>
-                <p class="tweet-datetime">Posted on @tweet.CreatedAtString</p>
-            </div>
-        }
-    </div>
-    @* } *@
-    @*@if (Model != null && Model?.Errors != null && Model?.Errors.Count > 0)
-        {
-            foreach (var error in Model.Errors)
+    @if (Model != null && Model?.UsersTweets != null && Model?.UsersTweets.Count > 0)
+    {
+        <p class="tweet-intro">Our most recent updates:</p>
+        <div class="twitter-feed">
+            @foreach (var tweet in Model.UsersTweets)
             {
-                <p class="tweet-intro">@error</p>
+                <div class="tweet">
+                    <p>@Html.Raw(tweet.TextShortVersion)</p>
+                    <p class="tweet-datetime">Posted on @tweet.CreatedAtString</p>
+                </div>
             }
-        }*@
+        </div>
+    }
+    else
+    {
+        <div class="results-container">
+            <h3>@GlobalResources.NoResults</h3>
+        </div>
+    }
+
+    @if (Model != null && Model?.Errors != null && Model?.Errors.Count > 0)
+    {
+        foreach (var error in Model.Errors)
+        {
+            <p class="tweet-intro">@error</p>
+        }
+    }
 </aside>

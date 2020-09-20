@@ -1,6 +1,6 @@
 ﻿namespace MRTwitter.ViewModel
 {
-    public class SearchViewModel
+    public class SearchRequestViewModel
     {
         public string Phrase { set; get; }
         public int PageNumber

@@ -15,7 +15,7 @@ namespace MRTwitter.Services
 {
     public class TwitterService : ITwitterService
     {
-        public List<TweetViewModel> GetTweet()
+        public UserTweetsViewModel GetTweets()
         {
             var data = new Dictionary<string, string>
             {
@@ -26,9 +26,10 @@ namespace MRTwitter.Services
             var twitterAutorization = new TwitterAuthorization(TwitterEndpointUrlConstants.GetStatutes, data);
 
             var response = SendToRequestToTwitter(TwitterEndpointUrlConstants.GetStatutes, twitterAutorization.OAuthHeader, twitterAutorization.Query);
-            if (response == null) return null;
+            if (response == null)
             {
                 Log.Warn("[TwitterService][GetTweet] - SendToRequestToTwitter response is null");
+                return null;
             }
 
             var deserializedData = (List<TweetContract>)JsonConvert.DeserializeObject(response, typeof(List<TweetContract>));
@@ -43,11 +44,13 @@ namespace MRTwitter.Services
                 cfg.CreateMap<UserContract, UserViewModel>();
             });
 
-            var mapper = config.CreateMapper();
+            var tweets = config.CreateMapper().Map<List<TweetContract>, List<TweetViewModel>>(deserializedData);
 
-            var tweetViewModel = mapper.Map<List<TweetContract>, List<TweetViewModel>>(deserializedData);
-            return tweetViewModel;
+            return new UserTweetsViewModel {
+                                            UsersTweets = tweets
+                                           };
         }
+
 
         public SearchResultsViewModel Search(string phrase)
         {
@@ -61,7 +64,7 @@ namespace MRTwitter.Services
 
             var repsonse = SendToRequestToTwitter(TwitterEndpointUrlConstants.GetSearchTweets, twitterAutorization.OAuthHeader, twitterAutorization.Query);
 
-            var model = new SearchViewModel();
+            var model = new SearchRequestViewModel();
 
             if (repsonse == null)
             {
@@ -114,7 +117,7 @@ namespace MRTwitter.Services
             }
             catch
             {
-                Log.Error("[TwitterService][SendToRequestToTwitter]- problem with ");
+                Log.Error("[TwitterService][SendToRequestToTwitter]- problem with send request to twitter ");
                 return null;
             }
         }

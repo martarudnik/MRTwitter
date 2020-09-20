@@ -2,7 +2,7 @@
 
 namespace MRTwitter.ViewModel
 {
-    public class ValidationViewModel
+    public class BaseViewModel
     {
         public List<string> Errors { get; set; }
     }

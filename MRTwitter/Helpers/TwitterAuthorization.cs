@@ -35,7 +35,9 @@ namespace MRTwitter.Helpers
                 "&",
                 data
                     .Union(data)
-                    .Select(kvp => string.Format("{0}={1}", Uri.EscapeDataString(kvp.Key), Uri.EscapeDataString(kvp.Value)))
+                    .Select(kvp => string.Format("{0}={1}", 
+                                   Uri.EscapeDataString(kvp.Key), 
+                                   Uri.EscapeDataString(kvp.Value)))
                     .OrderBy(s => s)
             );
 
