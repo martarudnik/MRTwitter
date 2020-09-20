@@ -1,4 +1,5 @@
-﻿using MRTwitter.Interfaces;
+﻿using MRTwitter.Constants;
+using MRTwitter.Interfaces;
 using MRTwitter.Validators;
 using MRTwitter.ViewModel;
 using System.Web.Mvc;
@@ -8,10 +9,12 @@ namespace MRTwitter.Controllers
     public class HomeController : Controller
     {
         private readonly ITwitterService _twitterService;
+        private readonly ICacheService _cacheService;
 
-        public HomeController(ITwitterService twitterService)
+        public HomeController(ITwitterService twitterService, ICacheService cacheService)
         {
             this._twitterService = twitterService;
+            this._cacheService = cacheService;
         }
 
         public ActionResult Index()
@@ -20,7 +23,8 @@ namespace MRTwitter.Controllers
         }
         public ActionResult GetTweetByUserId()
         {
-            var model = _twitterService.GetTweets();
+            var model = _cacheService.GetOrSet(TwitterParameterKey.UserFeed, () => _twitterService.GetTweets());
+
 
             return PartialView("~/Views/Home/UserTweets.cshtml", model);
         }

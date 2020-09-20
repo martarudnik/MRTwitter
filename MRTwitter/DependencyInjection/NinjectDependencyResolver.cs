@@ -26,6 +26,7 @@ namespace MRTwitter.DependencyInjection
         private void AddBindings()
         {
             kernel.Bind<ITwitterService>().To<TwitterService>();
+            kernel.Bind<ICacheService>().To<InMemoryCache>();
         }
     }
 }

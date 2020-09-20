@@ -9,5 +9,6 @@
         public static readonly string MaxId = "max_id";
         public static readonly string TweeterCount5 = "5";
         public static readonly string TweeterCount10 = "10";
+        public static readonly string UserFeed = "USerFeed";
     }
 }

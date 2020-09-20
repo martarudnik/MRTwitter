@@ -46,9 +46,7 @@ namespace MRTwitter.Services
 
             var tweets = config.CreateMapper().Map<List<TweetContract>, List<TweetViewModel>>(deserializedData);
 
-            return new UserTweetsViewModel {
-                                            UsersTweets = tweets
-                                           };
+            return new UserTweetsViewModel { UsersTweets = tweets };
         }
 
 
