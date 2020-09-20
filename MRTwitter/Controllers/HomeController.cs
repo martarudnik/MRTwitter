@@ -1,4 +1,6 @@
 ﻿using MRTwitter.Interfaces;
+using MRTwitter.Validators;
+using MRTwitter.ViewModel;
 using System.Web.Mvc;
 
 namespace MRTwitter.Controllers
@@ -25,7 +27,13 @@ namespace MRTwitter.Controllers
 
         public ActionResult Search(string phrase)
         {
-            var searchViewModel = _twitterService.Search(phrase);
+            var searchViewModel = new SearchResultsViewModel();
+            searchViewModel.Errors = Validator.Text25LenghtValidator(phrase);
+            if (searchViewModel.Errors.Count == 0)
+            {
+                searchViewModel= _twitterService.Search(phrase);
+            }
+
             return PartialView("~/Views/Home/_Results.cshtml", searchViewModel);
         }
     }

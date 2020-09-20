@@ -29,11 +29,11 @@
 else
 {
     <div class="results-container">
-        <h3>Sorry, but your search did not return any result</h3>
+        <h3>@GlobalResources.NoResults</h3>
     </div>
 }
 
-@*@if (Model != null && Model?.Errors != null && Model?.Errors.Count > 0)
+@if (Model != null && Model?.Errors != null && Model?.Errors.Count > 0)
 {
     <div class="results-container">
         @foreach (var error in Model.Errors)
@@ -41,4 +41,4 @@ else
             <h4 style="color:crimson">@error</h4>
         }
     </div>
-}*@
+}

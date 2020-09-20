@@ -123,10 +123,16 @@
   <data name="MyTweets" xml:space="preserve">
     <value>My Tweets</value>
   </data>
+  <data name="NoResults" xml:space="preserve">
+    <value>Sorry, but your search did not return any results</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
   <data name="SearchPhrase" xml:space="preserve">
     <value>search phrase...</value>
+  </data>
+  <data name="TextLenght25" xml:space="preserve">
+    <value>A search term should not be more than 25 characters long.</value>
   </data>
 </root>

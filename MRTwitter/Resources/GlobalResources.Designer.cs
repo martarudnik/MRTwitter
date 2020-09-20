@@ -79,6 +79,15 @@ namespace MRTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry, but your search did not return any results.
+        /// </summary>
+        public static string NoResults {
+            get {
+                return ResourceManager.GetString("NoResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Search {
@@ -93,6 +102,15 @@ namespace MRTwitter.Resources {
         public static string SearchPhrase {
             get {
                 return ResourceManager.GetString("SearchPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A search term should not be more than 25 characters long..
+        /// </summary>
+        public static string TextLenght25 {
+            get {
+                return ResourceManager.GetString("TextLenght25", resourceCulture);
             }
         }
     }
