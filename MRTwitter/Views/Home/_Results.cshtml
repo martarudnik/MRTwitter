@@ -15,16 +15,6 @@
             }
         </div>
     </div>
-    @*<div class="pagination">
-        @if (Model.PageNumber > 1)
-        {
-            @Ajax.RouteLink("previous page", null, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultList" }, new { @class = "previous", href = $"{Url.Action("Previous", "Home", new { @phrase = Model.Phrase })}" })
-        }
-        @if (Model.PageNumber < 10)
-        {
-            @Ajax.RouteLink("next page", null, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultList" }, new { @class = "next", href = $"{Url.Action("Next", "Home", new { @phrase = Model.Phrase })}" })
-        }
-    </div>*@
 }
 else
 {

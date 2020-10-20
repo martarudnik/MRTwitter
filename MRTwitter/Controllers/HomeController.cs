@@ -31,8 +31,10 @@ namespace MRTwitter.Controllers
 
         public ActionResult Search(string phrase)
         {
-            var searchViewModel = new SearchResultsViewModel();
-            searchViewModel.Errors = Validator.Text25LenghtValidator(phrase);
+            var searchViewModel = new SearchResultsViewModel
+            {
+                Errors = Validator.Text25LenghtValidator(phrase)
+            };
             if (searchViewModel.Errors.Count == 0)
             {
                 searchViewModel= _twitterService.Search(phrase);

@@ -72,18 +72,5 @@ namespace MRTwitter.Helpers
             var s = value.ToString();
             return string.Join<int>(".", from x in s.Split('.') select int.Parse(x));
         }
-
-        public static string ComputeStrings(string a, string expression, string b)
-        {
-            if (string.IsNullOrEmpty(a) || string.IsNullOrEmpty(expression) || string.IsNullOrEmpty(b))
-            {
-                return null;
-            }
-
-            var dataTable = new DataTable();
-            var result = a + expression + b;
-
-            return dataTable.Compute(result, null).ToString();
-        }
     }
 }

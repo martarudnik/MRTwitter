@@ -25,9 +25,6 @@ namespace MRTwitter.Helpers
         {
             this.Parameters = CreateParameterDictionary(fullUrl, parameters);
         }
-        public TwitterAuthorization()
-        {
-        }
 
         public string CreateSignature(string url, Dictionary<string, string> data)
         {
